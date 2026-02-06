@@ -1,0 +1,484 @@
+:root {
+  --bg1: #ffe5f0;
+  --bg2: #ffd1e3;
+  --accent: #ff4b7d;
+  --accent-soft: #ff9bb8;
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --text-main: #4a1631;
+  --text-soft: #7a3b5e;
+  --shadow-soft: 0 28px 60px rgba(255, 75, 125, 0.14);
+  --border-radius-lg: 32px;
+  --transition-fast: 0.2s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at top, #ffeaf3 0, #ffd1e3 35%, #ffc1da 70%, #ffb3d2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle animated background */
+.background-gradient {
+  position: fixed;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.8), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(255, 219, 238, 0.9), transparent 55%),
+    radial-gradient(circle at 0% 100%, rgba(255, 175, 204, 0.8), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 126, 168, 0.9), transparent 55%);
+  opacity: 0.7;
+  z-index: -2;
+  filter: blur(2px);
+  animation: float-bg 22s ease-in-out infinite alternate;
+}
+
+@keyframes float-bg {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(-40px, 30px, 0) scale(1.02);
+  }
+}
+
+/* Floating petals layer */
+.floating-petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(255, 152, 188, 0.45) 0, transparent 60%),
+    radial-gradient(circle at 80% 0%, rgba(255, 206, 225, 0.4) 0, transparent 60%);
+}
+
+/* Card */
+.card {
+  max-width: 880px;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 245, 251, 0.98));
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background:
+    conic-gradient(from 160deg, rgba(255, 182, 193, 0.24), transparent, rgba(255, 215, 235, 0.3), transparent);
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.card-inner {
+  position: relative;
+  padding: 28px 26px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 26px;
+}
+
+@media (max-width: 780px) {
+  .card-inner {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 22px 18px 20px;
+  }
+}
+
+/* Header */
+.card-header {
+  margin-bottom: 8px;
+}
+
+.tiny-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  opacity: 0.85;
+}
+
+.title {
+  margin: 6px 0 0;
+  font-family: "Great Vibes", "Poppins", cursive;
+  font-size: clamp(2.4rem, 4.1vw, 3.2rem);
+  color: var(--accent);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sparkle {
+  font-size: 1.4rem;
+  animation: sparkle-pop 1.8s ease-in-out infinite;
+}
+
+@keyframes sparkle-pop {
+  0%, 100% {
+    transform: translateY(-2px) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-6px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Personalize controls */
+.personalize {
+  margin: 6px 0 16px;
+}
+
+.personalize label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+
+#nameInput {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 119, 164, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+#nameInput::placeholder {
+  color: rgba(122, 59, 94, 0.5);
+}
+
+#nameInput:focus {
+  border-color: var(--accent-soft);
+  box-shadow: 0 0 0 1px rgba(255, 155, 184, 0.7);
+  transform: translateY(-1px);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  background: linear-gradient(135deg, #ff6f96, #ff4b7d);
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(255, 75, 125, 0.4);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(255, 75, 125, 0.45);
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(255, 75, 125, 0.35);
+  filter: brightness(0.98);
+}
+
+button.secondary {
+  background: rgba(255, 239, 247, 0.9);
+  color: var(--accent);
+  box-shadow: 0 10px 20px rgba(255, 179, 210, 0.4);
+}
+
+button.secondary:hover {
+  background: #ffe7f3;
+}
+
+.hint {
+  font-size: 11px;
+  color: rgba(122, 59, 94, 0.7);
+  margin: 4px 2px 0;
+}
+
+/* Message */
+.message {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+.message p {
+  margin: 8px 0;
+}
+
+.dear-line {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 15px;
+}
+
+.highlight {
+  background: linear-gradient(90deg, rgba(255, 214, 230, 0.7), rgba(255, 243, 250, 0.8));
+  padding: 0 6px;
+  border-radius: 999px;
+}
+
+.wish-line {
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.closing {
+  margin-top: 10px;
+}
+
+.signature {
+  font-family: "Great Vibes", "Poppins", cursive;
+  font-size: 1.45rem;
+  color: var(--accent);
+}
+
+/* Rose scene */
+.rose-scene {
+  position: relative;
+  min-height: 240px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px 6px 4px;
+}
+
+@media (max-width: 780px) {
+  .rose-scene {
+    min-height: 220px;
+  }
+}
+
+.stem {
+  width: 6px;
+  height: 130px;
+  background: linear-gradient(to bottom, #177b3b, #0c4d24);
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px rgba(23, 106, 59, 0.15);
+  position: relative;
+  transform-origin: bottom center;
+  animation: stem-sway 4.5s ease-in-out infinite;
+}
+
+@keyframes stem-sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1.5deg); }
+}
+
+.leaf {
+  position: absolute;
+  width: 46px;
+  height: 26px;
+  background: radial-gradient(circle at 10% 0, #4cd27a, #147237);
+  border-radius: 999px 5px 999px 5px;
+  box-shadow: 0 4px 10px rgba(12, 77, 36, 0.3);
+}
+
+.leaf-left {
+  left: 50%;
+  transform: translateX(-70%) rotate(-30deg);
+  top: 60%;
+}
+
+.leaf-right {
+  left: 50%;
+  transform: translateX(5%) rotate(145deg);
+  top: 50%;
+}
+
+/* Rose blossom */
+.rose {
+  position: absolute;
+  bottom: 118px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 110px;
+  animation: rose-breathe 3.6s ease-in-out infinite;
+}
+
+@keyframes rose-breathe {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.04); }
+}
+
+.petal {
+  position: absolute;
+  width: 60px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 0%, #ffd3dd, transparent 55%),
+              linear-gradient(to bottom, #ff8cab, #ff3c66 60%, #d2143f);
+  border-radius: 60px 60px 12px 12px;
+  box-shadow: 0 10px 16px rgba(198, 11, 57, 0.4);
+}
+
+.petal-1 {
+  left: 8px;
+  top: 26px;
+  transform: rotate(-20deg);
+}
+
+.petal-2 {
+  right: 8px;
+  top: 26px;
+  transform: rotate(20deg);
+}
+
+.petal-3 {
+  left: 22px;
+  top: 18px;
+  transform: rotate(-7deg);
+}
+
+.petal-4 {
+  right: 22px;
+  top: 18px;
+  transform: rotate(7deg);
+}
+
+.petal-center {
+  left: 50%;
+  top: 4px;
+  width: 70px;
+  height: 85px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at 30% 0%, #ffe4ec, transparent 55%),
+              linear-gradient(to bottom, #ffaac3, #ff4775 45%, #c20b3b);
+}
+
+/* Glow under rose */
+.glow {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 170, 195, 0.85), transparent 60%);
+  filter: blur(8px);
+  opacity: 0.75;
+}
+
+/* Footer */
+.card-footer {
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.9), rgba(255, 100, 147, 0.7));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease-out;
+}
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay-content {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 22px 26px;
+  border-radius: 24px;
+  box-shadow: 0 26px 50px rgba(194, 13, 61, 0.35);
+  text-align: center;
+  max-width: 340px;
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay-content::before {
+  content: "🌹";
+  position: absolute;
+  font-size: 4rem;
+  opacity: 0.1;
+  right: -8px;
+  top: -12px;
+}
+
+.overlay-text {
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+/* Extra falling roses for overlay */
+.overlay.visible::before,
+.overlay.visible::after {
+  content: "🌹";
+  position: absolute;
+  font-size: 2rem;
+  animation: rose-fall 3.5s linear infinite;
+}
+
+.overlay.visible::before {
+  left: 15%;
+  top: -10%;
+}
+
+.overlay.visible::after {
+  right: 20%;
+  top: -15%;
+  animation-delay: 0.9s;
+}
+
+@keyframes rose-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-20px, 110vh, 0) rotate(40deg);
+    opacity: 0;
+  }
+}
+
+/* Hidden utility */
+.hidden {
+  display: none;
+}
