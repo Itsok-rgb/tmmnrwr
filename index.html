@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Rose Day 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-gradient"></div>
+  <div class="floating-petals" aria-hidden="true"></div>
+
+  <main class="card">
+    <div class="card-inner">
+      <header class="card-header">
+        <span class="tiny-label">Special Rose Day Wish</span>
+        <h1 class="title">Happy Rose Day<span class="sparkle">✨</span></h1>
+      </header>
+
+      <section class="personalize">
+        <label for="nameInput">Who is this for?</label>
+        <div class="input-row">
+          <input
+            id="nameInput"
+            type="text"
+            placeholder="Type their name here..."
+            autocomplete="off"
+          />
+          <button id="personalizeBtn" type="button">Personalise</button>
+        </div>
+        <p class="hint">You can also leave it empty for a surprise 💫</p>
+      </section>
+
+      <section class="message">
+        <p class="dear-line" id="dearLine">Dear You,</p>
+        <p>
+          On this beautiful
+          <span class="highlight">Rose Day</span>, I’m sending you a bouquet
+          of the softest petals, the sweetest fragrance, and all the love my
+          heart can hold.
+        </p>
+        <p>
+          Just like a rose, you make the world more
+          <span class="highlight">beautiful</span>, more
+          <span class="highlight">colourful</span>, and a little bit
+          <span class="highlight">magical</span> every single day.
+        </p>
+        <p>
+          May your life be filled with moments that bloom with happiness,
+          petals of kindness wrapped in warmth, and thorns that are gentle
+          enough to help you grow but never strong enough to break you.
+        </p>
+        <p class="wish-line">
+          Today, I’m not just giving you a rose, I’m giving you a little
+          piece of my heart wrapped in petals of love. 🌹
+        </p>
+        <p class="closing">
+          With all my love,<br />
+          <span class="signature">Someone who cares about you a lot 💕</span>
+        </p>
+      </section>
+
+      <section class="rose-scene">
+        <div class="stem"></div>
+        <div class="leaf leaf-left"></div>
+        <div class="leaf leaf-right"></div>
+        <div class="rose">
+          <div class="petal petal-1"></div>
+          <div class="petal petal-2"></div>
+          <div class="petal petal-3"></div>
+          <div class="petal petal-4"></div>
+          <div class="petal petal-center"></div>
+        </div>
+        <div class="glow"></div>
+      </section>
+
+      <footer class="card-footer">
+        <button id="revealBtn" type="button" class="secondary">
+          Tap to shower roses 🌹
+        </button>
+      </footer>
+    </div>
+  </main>
+
+  <div id="roseOverlay" class="overlay hidden">
+    <div class="overlay-content">
+      <p class="overlay-text">
+        May roses keep blooming in your life,<br />
+        today and always. 🌹💖
+      </p>
+      <button id="closeOverlayBtn" type="button">Aww, thank you 💗</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
